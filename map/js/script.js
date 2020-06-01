@@ -21,14 +21,14 @@ if(Modernizr.webgl) {
 		firsthover = true;
 
 
-		layernames = ["pctmultigen"];
-		layername = "pctmultigen";
+		layernames = ["lsoasover70s_all_pctmultigen"];
+		layername = "lsoasover70s_all_pctmultigen";
 
-		hoverlayernames = ["pctmultigen"];
-		hoverlayername = "pctmultigen";
+		hoverlayernames = ["lsoasover70s_all_pctmultigen"];
+		hoverlayername = "lsoasover70s_all_pctmultigen";
 
-		secondvars = ["nummultigen"];
-		secondvar = "nummultigen";
+		secondvars = ["lsoasover70s_all_nummultigen"];
+		secondvar = "lsoasover70s_all_nummultigen";
 
 		// windowheight = window.innerHeight;
 		// d3.select("#map").style("height",windowheight + "px")
@@ -132,13 +132,13 @@ if(Modernizr.webgl) {
 				"type": "fill",
 				"source": {
 					"type": "vector",
-					"tiles": ["http://localhost:8000/boundaries/{z}/{x}/{y}.pbf"],
+					"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
 					// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					"maxzoom": 13
 				},
 				// "minzoom": 4,
 				// "maxzoom": 20,
-				"source-layer": "boundaries_over70s",
+				"source-layer": "boundaries_lsoa_over70s",
 				"layout": {},
 				'paint': {
 						'fill-opacity': [
@@ -174,12 +174,12 @@ if(Modernizr.webgl) {
 					'type': 'fill',
 					"source": {
 						"type": "vector",
-						"tiles": ["http://localhost:8000/tiles/{z}/{x}/{y}.pbf"],
+						"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/tiles/{z}/{x}/{y}.pbf"],
 						"maxzoom": 13
 					},
 					// "maxzoom"
-					"source-layer": "buildings_pctmultigen",
+					"source-layer": "buildings_lsoa_pctmultigen",
 					"background-color": "#ccc",
 					'paint': {
 							'fill-opacity':1,
@@ -210,13 +210,13 @@ if(Modernizr.webgl) {
 					"type": "line",
 					"source": {
 						"type": "vector",
-						"tiles": ["http://localhost:8000/boundaries/{z}/{x}/{y}.pbf"],
+						"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
 						"maxzoom": 13
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					},
 					// "minzoom": 8,
 					// "maxzoom": 20,
-					"source-layer": "boundaries_over70s",
+					"source-layer": "boundaries_lsoa_over70s",
 					"layout": {},
 					"paint": {
 						"line-color": "orange",
