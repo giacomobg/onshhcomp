@@ -17,18 +17,18 @@ if(Modernizr.webgl) {
 
 		//Set up global variables
 		dvc = config.ons;
-		oldAREACD = "";
+		oldOA11CD = "";
 		firsthover = true;
 
 
-		layernames = ["oaover70s_percwithunder60s"];
-		layername = "oaover70s_percwithunder60s";
+		layernames = ["pctmultigen"];
+		layername = "pctmultigen";
 
-		hoverlayernames = ["oaover70s_percwithunder60s"];
-		hoverlayername = "oaover70s_percwithunder60s";
+		hoverlayernames = ["pctmultigen"];
+		hoverlayername = "pctmultigen";
 
-		secondvars = ["oaover70s_over70s"];
-		secondvar = "oaover70s_over70s";
+		secondvars = ["nummultigen"];
+		secondvar = "nummultigen";
 
 		// windowheight = window.innerHeight;
 		// d3.select("#map").style("height",windowheight + "px")
@@ -134,10 +134,11 @@ if(Modernizr.webgl) {
 					"type": "vector",
 					"tiles": ["http://localhost:8000/boundaries/{z}/{x}/{y}.pbf"],
 					// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
+					"maxzoom": 13
 				},
-				"minzoom": 4,
-				"maxzoom": 20,
-				"source-layer": "rateover70swithunder60s",
+				// "minzoom": 4,
+				// "maxzoom": 20,
+				"source-layer": "boundaries_over70s",
 				"layout": {},
 				'paint': {
 						'fill-opacity': [
@@ -175,8 +176,10 @@ if(Modernizr.webgl) {
 						"type": "vector",
 						"tiles": ["http://localhost:8000/tiles/{z}/{x}/{y}.pbf"],
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/tiles/{z}/{x}/{y}.pbf"],
+						"maxzoom": 13
 					},
-					"source-layer": "buildings_rateover70swithunder60s",
+					// "maxzoom"
+					"source-layer": "buildings_pctmultigen",
 					"background-color": "#ccc",
 					'paint': {
 							'fill-opacity':1,
@@ -208,17 +211,18 @@ if(Modernizr.webgl) {
 					"source": {
 						"type": "vector",
 						"tiles": ["http://localhost:8000/boundaries/{z}/{x}/{y}.pbf"],
+						"maxzoom": 13
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					},
-					"minzoom": 8,
-					"maxzoom": 20,
-					"source-layer": "rateover70swithunder60s",
+					// "minzoom": 8,
+					// "maxzoom": 20,
+					"source-layer": "boundaries_over70s",
 					"layout": {},
 					"paint": {
 						"line-color": "orange",
 						"line-width": 3
 					},
-					"filter": ["==", "AREACD", ""]
+					"filter": ["==", "OA11CD", ""]
 				}, 'place_suburb');
 
 			//test whether ie or not
@@ -308,28 +312,28 @@ if(Modernizr.webgl) {
 			if (zoomLevelIsLarge()) {
 
 				console.log(e.features[0].properties)
-				newAREACD = e.features[0].properties.AREACD;
+				newOA11CD = e.features[0].properties.OA11CD;
 				if(firsthover) {
           // dataLayer.push({
           //     'event': 'mapHoverSelect',
-          //     'selected': newAREACD
+          //     'selected': newOA11CD
           // })
 
             firsthover = false;
         }
 
-				if(newAREACD != oldAREACD) {
-					oldAREACD = e.features[0].properties.AREACD;
-					console.log(oldAREACD)
-					map.setFilter("lsoa-outlines-hover", ["==", "AREACD", e.features[0].properties.AREACD]);
+				if(newOA11CD != oldOA11CD) {
+					oldOA11CD = e.features[0].properties.OA11CD;
+					console.log(oldOA11CD)
+					map.setFilter("lsoa-outlines-hover", ["==", "OA11CD", e.features[0].properties.OA11CD]);
 					var features = map.queryRenderedFeatures(e.point,{layers: ['lsoa-outlines']});
 
 				 	if(features.length != 0){
 
-						setAxisVal(features[0].properties.AREACD, features[0].properties.AREACD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+						setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 						//updatePercent(e.features[0]);
 					}
-					//setAxisVal(e.features[0].properties.AREACD, e.features[0].properties["houseprice"]);
+					//setAxisVal(e.features[0].properties.OA11CD, e.features[0].properties["houseprice"]);
 				}
 
 			} // ends if zoomLevelIsLarge
@@ -353,8 +357,8 @@ if(Modernizr.webgl) {
 
 
 		function onLeave() {
-				map.setFilter("lsoa-outlines-hover", ["==", "AREACD", ""]);
-				oldAREACD = "";
+				map.setFilter("lsoa-outlines-hover", ["==", "OA11CD", ""]);
+				oldOA11CD = "";
 				// $("#areaselect").val("").trigger("chosen:updated");
 				hideaxisVal();
 
@@ -368,26 +372,26 @@ if(Modernizr.webgl) {
 		 		disableMouseEvents();
 				features =[];
 				features[0] = e.features[0]
-		 		newAREACD = features[0].properties.AREACD;
+		 		newOA11CD = features[0].properties.OA11CD;
 
-				if(newAREACD != oldAREACD) {
-					map.setFilter("lsoa-outlines-hover", ["==", "AREACD", e.features[0].properties.AREACD]);
+				if(newOA11CD != oldOA11CD) {
+					map.setFilter("lsoa-outlines-hover", ["==", "OA11CD", e.features[0].properties.OA11CD]);
 					//var features = map.queryRenderedFeatures(e.point,{layers: ['lsoa-outlines']});
-					setAxisVal(features[0].properties.AREACD, features[0].properties.AREACD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+					setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				}
 
-		 		// if(newAREACD != oldAREACD) {
-		 		// 	oldAREACD = features[0].properties.AREACD;
-		 		// 	map.setFilter("lsoa-outlines-hover", ["==", "AREACD", features[0].properties.AREACD]);
+		 		// if(newOA11CD != oldOA11CD) {
+		 		// 	oldOA11CD = features[0].properties.OA11CD;
+		 		// 	map.setFilter("lsoa-outlines-hover", ["==", "OA11CD", features[0].properties.OA11CD]);
 				//
-		 		// 	 //selectArea(e.features[0].properties.AREACD);
+		 		// 	 //selectArea(e.features[0].properties.OA11CD);
 				// 	//updatePercent(features[0]);
-				// 	setAxisVal(features[0].properties.AREACD, features[0].properties.AREACD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+				// 	setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 		 		// }
 
 		 		// dataLayer.push({
         //      'event':'mapClickSelect',
-        //      'selected': newAREACD
+        //      'selected': newOA11CD
         //  })
 
 			} // ends if zoomLevelIsLarge
@@ -411,7 +415,7 @@ if(Modernizr.webgl) {
 		}
 
 
-		function setAxisVal(areanm, areacd, areaval, areanum) {
+		function setAxisVal(areanm, OA11CD, areaval, areanum) {
 
 			d3.select("#keyvalue").style("font-weight","bold").html(function(){
 				if(!isNaN(areaval)) {
@@ -664,7 +668,7 @@ if(Modernizr.webgl) {
 
 				console.log(features)
 				if(typeof features !== 'undefined' ) {
-					setAxisVal(features[0].properties.AREACD, features[0].properties.AREACD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+					setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 
  			 }
 
@@ -819,10 +823,10 @@ if(Modernizr.webgl) {
 		 	features = map.queryRenderedFeatures(point,{layers: ['lsoa-outlines']});
 		 	if(features.length != 0){
 		 		 //onrender(),
-		 		map.setFilter("lsoa-outlines-hover", ["==", "AREACD", features[0].properties.AREACD]);
+		 		map.setFilter("lsoa-outlines-hover", ["==", "OA11CD", features[0].properties.OA11CD]);
 				//var features = map.queryRenderedFeatures(point);
 				disableMouseEvents();
-				setAxisVal(features[0].properties.AREACD, features[0].properties.AREACD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+				setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				//updatePercent(features[0]);
 		 		clearInterval(tilechecker);
 		 	}
@@ -836,8 +840,8 @@ if(Modernizr.webgl) {
 
 		function selectlist(datacsv) {
 
-			var areacodes =  datacsv.map(function(d) { return d.AREACD; });
-			var areanames =  datacsv.map(function(d) { return d.AREACD; });
+			var areacodes =  datacsv.map(function(d) { return d.OA11CD; });
+			var areanames =  datacsv.map(function(d) { return d.OA11CD; });
 			var menuarea = d3.zip(areanames,areacodes).sort(function(a, b){ return d3.ascending(a[0], b[0]); });
 
 			// Build option menu for occupations
@@ -863,7 +867,7 @@ if(Modernizr.webgl) {
 
 							disableMouseEvents();
 
-							map.setFilter("lsoa-outlines-hover", ["==", "AREACD", params.selected]);
+							map.setFilter("lsoa-outlines-hover", ["==", "OA11CD", params.selected]);
 
 							selectArea(params.selected);
 							setAxisVal(params.selected);

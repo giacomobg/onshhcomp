@@ -1,6 +1,7 @@
-
-processing/OSdistrictByLSOA.zip
-processing/seventyplus.geojson
-__MACOSX/._OSdistrictByLSOA.shp
-map/tiles.zip
-popdenmap/tiles.zip
+boundaries
+dottiles
+tiles
+processing
+.DS_store
+.gitattributes
+dotmap/__MACOSX
