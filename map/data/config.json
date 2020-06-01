@@ -8,7 +8,7 @@
 "varunit4": "10% lowest income areas <br>&nbsp;&nbsp;&darr;",
 "displaydecimals": 1,
 "legenddecimals": 0,
-"breaks": [[0,12.069,22.535,37.255,63.158,100]],
+"breaks": [[0,10.145,20.968,36,61.905,100]],
 "dropticks": true,
 "numberBreaks":5
 }}
