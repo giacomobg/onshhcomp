@@ -138,74 +138,39 @@ if(Modernizr.webgl) {
 				},
 				// "minzoom": 4,
 				// "maxzoom": 20,
-				"source-layer": "boundaries_over70s",
+				"source-layer": "boundaries_oa",
 				"layout": {},
 				'paint': {
-						'fill-opacity': [
-							'interpolate',
-							  ['linear'],
-							  // ['zoom'] indicates zoom, default at lowest number, threshold, value above threshold
-							  ['zoom'],
-							  8, 0.6,
-							  9, 0.2
-						],
-						'fill-outline-color':'rgba(0,0,0,0)',
-						'fill-color': {
-								// Refers to the data of that specific property of the polygon
-							'property': layername,
-							'default': '#666666',
-							// Prevents interpolation of colors between stops
-							'base': 0,
-						'stops': [
-							[dvc.breaks[0][0], dvc.varcolour[0]],
-							[dvc.breaks[0][1], dvc.varcolour[0]],
-							[dvc.breaks[0][2], dvc.varcolour[1]],
-							[dvc.breaks[0][3], dvc.varcolour[2]],
-							[dvc.breaks[0][4], dvc.varcolour[3]],
-							[dvc.breaks[0][5], dvc.varcolour[4]]
-						]
-						}
-
-					}
+					'fill-opacity': 0
+				}
 			}, 'highway_name_other');
 
-
-
-				map.addLayer({
-					"id": "imdlayer",
-					'type': 'fill',
+			map.addLayer(
+				{
+					"id": "centroids",
+					"type": "circle",
 					"source": {
 						"type": "vector",
-						"tiles": ["http://localhost:8000/tiles/{z}/{x}/{y}.pbf"],
-						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/tiles/{z}/{x}/{y}.pbf"],
+						"tiles": ["http://localhost:8000/dottiles/{z}/{x}/{y}.pbf"],
 						"maxzoom": 13
 					},
-					// "maxzoom"
-					"source-layer": "buildings_pctmultigen",
-					"background-color": "#ccc",
-					'paint': {
-							'fill-opacity':1,
-							'fill-outline-color':'rgba(0,0,0,0)',
-							'fill-color': {
-									// Refers to the data of that specific property of the polygon
-								'property': layername,
-								'default': '#666666',
-								// Prevents interpolation of colors between stops
-								'base': 0,
-								'stops': [
-									[dvc.breaks[0][0], '#7fcdbb'],
-									[dvc.breaks[0][1], '#7fcdbb'],
-									[dvc.breaks[0][2], '#41b6c4'],
-									[dvc.breaks[0][3], '#1d91c0'],
-									[dvc.breaks[0][4], '#225ea8'],
-									[dvc.breaks[0][5], '#0c2c84']
-								]
-							}
-
-						}
-				}, 'highway_name_other');
-
-
+					"source-layer": "centroids_oa",
+					"paint": {
+						"circle-radius": [
+							"sqrt", ["/", ["get", "nummultigen"], 2]
+						],
+						"circle-color": {
+							"property": "nummultigen",
+							"stops": [
+								[0, '#abc149'],
+								[50, '#24a79b']
+							]
+						},
+						"circle-opacity": 0.9
+					}
+				},
+				"place_suburb"
+			);
 
 				map.addLayer({
 					"id": "oa-outlines-hover",
