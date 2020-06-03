@@ -553,7 +553,7 @@ if(Modernizr.webgl) {
 						.attr("fill","#323132")
 						.style("text-anchor","left")
 						.attr("font-size","14px")
-						.text("% of population");
+						.text(dvc.axistext);
 
 					keyhor.append("rect")
 						.attr("id","keybar")

@@ -6,6 +6,7 @@
 "varunit2": "&#x25B2;&nbsp;&nbsp;<br>10% most deprived areas",
 "varunit3": "10% highest income areas <br>&nbsp;&nbsp;&darr;",
 "varunit4": "10% lowest income areas <br>&nbsp;&nbsp;&darr;",
+"axistext": "% of households",
 "displaydecimals": 1,
 "legenddecimals": 0,
 "breaks": [[0,3,6,9,12,20]],
