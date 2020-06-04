@@ -121,20 +121,20 @@ if(Modernizr.webgl) {
 				.range(colour);
 
 		//now ranges are set we can call draw the key
-		createKey(config);
-		createLegend(config)
+		// createKey(config);
+		// createLegend(config)
 
 
 		map.on('load', function() {
 			// layers required for oa outlines, oa outline hover (could use feature state), circle, circle outline (could combine), oa hover
 			map.addLayer({
-				"id": "oa-outlines",
+				"id": "oa-hover",
 				"type": "fill",
 				"source": {
 					"type": "vector",
 					"tiles": ["http://localhost:8000/dottiles/{z}/{x}/{y}.pbf"],
 					// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
-					"maxzoom": 13
+					"maxzoom": 14
 				},
 				// "minzoom": 4,
 				// "maxzoom": 20,
@@ -152,7 +152,7 @@ if(Modernizr.webgl) {
 					"source": {
 						"type": "vector",
 						"tiles": ["http://localhost:8000/dottiles/{z}/{x}/{y}.pbf"],
-						"maxzoom": 13
+						"maxzoom": 14
 					},
 					"source-layer": "centroids_oa",
 					"paint": {
@@ -178,7 +178,7 @@ if(Modernizr.webgl) {
 					"source": {
 						"type": "vector",
 						"tiles": ["http://localhost:8000/boundaries/{z}/{x}/{y}.pbf"],
-						"maxzoom": 13
+						"maxzoom": 14
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					},
 					// "minzoom": 8,
@@ -186,8 +186,18 @@ if(Modernizr.webgl) {
 					"source-layer": "boundaries_over70s",
 					"layout": {},
 					"paint": {
-						"line-color": "orange",
-						"line-width": 3
+						"line-color": //[
+						// 	'case',
+						// 	['boolean', ['feature-state', 'hover'], false],
+							"orange",
+						// 	"black"
+						// ],
+						"line-width": //[
+						// 	'case',
+						// 	['boolean', ['feature-state', 'hover'], false],
+							3,
+						// 	1
+						// ]
 					},
 					"filter": ["==", "OA11CD", ""]
 				}, 'place_suburb');
@@ -227,15 +237,15 @@ if(Modernizr.webgl) {
 			// };
 
 			//Highlight stroke on mouseover (and show area information)
-			map.on("mousemove", "oa-outlines", onMove);
+			map.on("mousemove", "oa-hover", onMove);
 
 			// Reset the lsoa-fills-hover layer's filter when the mouse leaves the layer.
-			map.on("mouseleave", "oa-outlines", onLeave);
+			map.on("mouseleave", "oa-hover", onLeave);
 
 			map.getCanvasContainer().style.cursor = 'pointer';
 
 			//Add click event
-			map.on('click', 'oa-outlines', onClick);
+			map.on('click', "oa-hover", onClick);
 
 			//get location on click
 			d3.select(".mapboxgl-ctrl-geolocate").on("click", geolocate);
@@ -293,7 +303,7 @@ if(Modernizr.webgl) {
 					oldOA11CD = e.features[0].properties.OA11CD;
 					console.log(oldOA11CD)
 					map.setFilter("oa-outlines-hover", ["==", "OA11CD", e.features[0].properties.OA11CD]);
-					var features = map.queryRenderedFeatures(e.point,{layers: ['oa-outlines']});
+					var features = map.queryRenderedFeatures(e.point,{layers: ["oa-hover"]});
 
 				 	if(features.length != 0){
 
@@ -343,7 +353,7 @@ if(Modernizr.webgl) {
 
 				if(newOA11CD != oldOA11CD) {
 					map.setFilter("oa-outlines-hover", ["==", "OA11CD", e.features[0].properties.OA11CD]);
-					//var features = map.queryRenderedFeatures(e.point,{layers: ['oa-outlines']});
+					//var features = map.queryRenderedFeatures(e.point,{layers: ["oa-hover"]});
 					setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				}
 
@@ -371,14 +381,14 @@ if(Modernizr.webgl) {
 		}
 
 		function disableMouseEvents() {
-				map.off("mousemove", "oa-outlines", onMove);
-				map.off("mouseleave", "oa-outlines", onLeave);
+				map.off("mousemove", "oa-hover", onMove);
+				map.off("mouseleave", "oa-hover", onLeave);
 		}
 
 		function enableMouseEvents() {
-				map.on("mousemove", "oa-outlines", onMove);
-				map.on("click", "oa-outlines", onClick);
-				map.on("mouseleave", "oa-outlines", onLeave);
+				map.on("mousemove", "oa-hover", onMove);
+				map.on("click", "oa-hover", onClick);
+				map.on("mouseleave", "oa-hover", onLeave);
 		}
 
 
@@ -633,7 +643,7 @@ if(Modernizr.webgl) {
 				//repaint area layer map usign the styles above
 				map.setPaintProperty("imdlayer", 'fill-color', styleObject);
 
-				map.setPaintProperty("oa-outlines", 'fill-color', styleObject);
+				map.setPaintProperty("oa-hover", 'fill-color', styleObject);
 
 				console.log(features)
 				if(typeof features !== 'undefined' ) {
@@ -686,7 +696,7 @@ if(Modernizr.webgl) {
 							}
 
 						}
-				}, 'oa-outlines');
+				}, "oa-hover");
 			}
 
 
@@ -785,7 +795,7 @@ if(Modernizr.webgl) {
 		map.once('moveend', function() {
 			features=null
 			point = map.project([lng,lat]);
-		 	features = map.queryRenderedFeatures(point,{layers: ['oa-outlines']});
+		 	features = map.queryRenderedFeatures(point,{layers: ["oa-hover"]});
 		 	if(features.length != 0){
 		 		 //onrender(),
 		 		map.setFilter("oa-outlines-hover", ["==", "OA11CD", features[0].properties.OA11CD]);
@@ -801,7 +811,7 @@ if(Modernizr.webgl) {
 		// var tilechecker = setInterval(function(){
 		// 	features=null
 		// 	point = map.project([lng,lat]);
-		//  	features = map.queryRenderedFeatures(point,{layers: ['oa-outlines']});
+		//  	features = map.queryRenderedFeatures(point,{layers: ["oa-hover"]});
 		//  	if(features.length != 0){
 		//  		 //onrender(),
 		//  		map.setFilter("oa-outlines-hover", ["==", "OA11CD", features[0].properties.OA11CD]);
