@@ -122,7 +122,7 @@ if(Modernizr.webgl) {
 
 		//now ranges are set we can call draw the key
 		createKey(config);
-		createLegend(config)
+		// createLegend(config)
 
 
 		map.on('load', function() {

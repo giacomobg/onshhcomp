@@ -9,11 +9,7 @@
 "axistext": "% of households",
 "displaydecimals": 1,
 "legenddecimals": 0,
-<<<<<<< HEAD
-"breaks": [[0,2,4,8,20,31]],
-=======
 "breaks": [[0,3,6,9,12,20]],
->>>>>>> lsoa
 "dropticks": true,
 "numberBreaks":5
 }}
