@@ -132,21 +132,13 @@ if(Modernizr.webgl) {
 				"type": "fill",
 				"source": {
 					"type": "vector",
-<<<<<<< HEAD
-					"tiles": ["http://localhost:8000/oatiles/{z}/{x}/{y}.pbf"],
-=======
 					"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
->>>>>>> lsoa
 					// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					"maxzoom": 13
 				},
 				// "minzoom": 4,
 				// "maxzoom": 20,
-<<<<<<< HEAD
-				"source-layer": "boundaries_oa_hh",
-=======
 				"source-layer": "boundaries_lsoa_over70s",
->>>>>>> lsoa
 				"layout": {},
 				'paint': {
 						'fill-opacity': [
@@ -182,20 +174,12 @@ if(Modernizr.webgl) {
 					'type': 'fill',
 					"source": {
 						"type": "vector",
-<<<<<<< HEAD
-						"tiles": ["http://localhost:8000/oatiles/{z}/{x}/{y}.pbf"],
-=======
 						"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
->>>>>>> lsoa
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/tiles/{z}/{x}/{y}.pbf"],
 						"maxzoom": 13
 					},
 					// "maxzoom"
-<<<<<<< HEAD
-					"source-layer": "buildings_oa_hh",
-=======
 					"source-layer": "buildings_lsoa_pctmultigen",
->>>>>>> lsoa
 					"background-color": "#ccc",
 					'paint': {
 							'fill-opacity':1,
@@ -226,21 +210,13 @@ if(Modernizr.webgl) {
 					"type": "line",
 					"source": {
 						"type": "vector",
-<<<<<<< HEAD
-						"tiles": ["http://localhost:8000/oatiles/{z}/{x}/{y}.pbf"],
-=======
 						"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
->>>>>>> lsoa
 						"maxzoom": 13
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					},
 					// "minzoom": 8,
 					// "maxzoom": 20,
-<<<<<<< HEAD
-					"source-layer": "boundaries_oa_hh",
-=======
 					"source-layer": "boundaries_lsoa_over70s",
->>>>>>> lsoa
 					"layout": {},
 					"paint": {
 						"line-color": "orange",
