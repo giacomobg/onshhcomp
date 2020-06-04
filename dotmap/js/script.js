@@ -162,8 +162,8 @@ if(Modernizr.webgl) {
 						"circle-color": {
 							"property": "nummultigen",
 							"stops": [
-								[0, '#abc149'],
-								[50, '#24a79b']
+								[0, '#70969f'],
+								[50, '#a324ce']
 							]
 						},
 						"circle-opacity": 0.9
