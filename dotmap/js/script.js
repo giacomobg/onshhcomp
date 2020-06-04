@@ -25,10 +25,10 @@ if(Modernizr.webgl) {
 		layername = "pctmultigen";
 
 		hoverlayernames = ["pctmultigen"];
-		hoverlayername = "pctmultigen";
+		hoverlayername = "nummultigen";
 
 		secondvars = ["nummultigen"];
-		secondvar = "nummultigen";
+		secondvar = "numover70";
 
 		// windowheight = window.innerHeight;
 		// d3.select("#map").style("height",windowheight + "px")
@@ -367,7 +367,7 @@ if(Modernizr.webgl) {
 		function zoomLevelIsLarge() {
 			// checks if zoom level is above the required threshold to allow events
 			console.log(map.getZoom())
-			return map.getZoom() > 8
+			return map.getZoom() > 9
 		}
 
 		function disableMouseEvents() {
@@ -385,10 +385,12 @@ if(Modernizr.webgl) {
 		function setAxisVal(areanm, OA11CD, areaval, areanum) {
 
 			d3.select("#keyvalue").style("font-weight","bold").html(function(){
-				if(!isNaN(areaval)) {
-					return areanm + "<br>" + displayformat(areaval) + "% (" + areanum +" people)";
+				if(isNaN(areaval)) {
+					return areanm + "<br> Data unavailable";
+				} else if (areaval == 0) {
+					return areanm + "<br> No over 70s in this area"
 				} else {
-					return areanm + "<br>" + displayformat(areaval) + "% (" + areanum +" people)";
+					return areanm + "<br>" + areaval + " of the " + areanum + " over 70s here live with an under 60";
 				}
 			});
 
@@ -779,14 +781,10 @@ if(Modernizr.webgl) {
 
 	function successpc(lat,lng) {
 
-		map.jumpTo({center:[lng,lat], zoom:12})
-		point = map.project([lng,lat]);
-
-
-		setTimeout(function(){
-
-		var tilechecker = setInterval(function(){
-			 features=null
+		map.flyTo({center:[lng,lat], zoom:13})
+		map.once('moveend', function() {
+			features=null
+			point = map.project([lng,lat]);
 		 	features = map.queryRenderedFeatures(point,{layers: ['oa-outlines']});
 		 	if(features.length != 0){
 		 		 //onrender(),
@@ -795,10 +793,26 @@ if(Modernizr.webgl) {
 				disableMouseEvents();
 				setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				//updatePercent(features[0]);
-		 		clearInterval(tilechecker);
-		 	}
-		 },500)
-		},500);
+			}
+		})
+
+		// setTimeout(function(){
+		//
+		// var tilechecker = setInterval(function(){
+		// 	features=null
+		// 	point = map.project([lng,lat]);
+		//  	features = map.queryRenderedFeatures(point,{layers: ['oa-outlines']});
+		//  	if(features.length != 0){
+		//  		 //onrender(),
+		//  		map.setFilter("oa-outlines-hover", ["==", "OA11CD", features[0].properties.OA11CD]);
+		// 		//var features = map.queryRenderedFeatures(point);
+		// 		disableMouseEvents();
+		// 		setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+		// 		//updatePercent(features[0]);
+		//  		clearInterval(tilechecker);
+		//  	}
+		//  },500)
+		// },500);
 
 
 
