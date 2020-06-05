@@ -134,7 +134,7 @@ if(Modernizr.webgl) {
 					"type": "vector",
 					"tiles": ["http://localhost:8000/dottiles/{z}/{x}/{y}.pbf"],
 					// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
-					"maxzoom": 14
+					"maxzoom": 13
 				},
 				// "minzoom": 4,
 				// "maxzoom": 20,
@@ -152,7 +152,7 @@ if(Modernizr.webgl) {
 					"source": {
 						"type": "vector",
 						"tiles": ["http://localhost:8000/dottiles/{z}/{x}/{y}.pbf"],
-						"maxzoom": 14
+						"maxzoom": 13
 					},
 					"source-layer": "centroids_oa",
 					"paint": {
@@ -162,8 +162,8 @@ if(Modernizr.webgl) {
 						"circle-color": {
 							"property": "nummultigen",
 							"stops": [
-								[0, '#70969f'],
-								[50, '#a324ce']
+								[0, '#60868f'],
+								[41, '#c547df']
 							]
 						},
 						"circle-opacity": 0.9
@@ -177,13 +177,13 @@ if(Modernizr.webgl) {
 					"type": "line",
 					"source": {
 						"type": "vector",
-						"tiles": ["http://localhost:8000/boundaries/{z}/{x}/{y}.pbf"],
-						"maxzoom": 14
+						"tiles": ["http://localhost:8000/dottiles/{z}/{x}/{y}.pbf"],
+						"maxzoom": 13
 						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					},
 					// "minzoom": 8,
 					// "maxzoom": 20,
-					"source-layer": "boundaries_over70s",
+					"source-layer": "boundaries_oa",
 					"layout": {},
 					"paint": {
 						"line-color": //[
