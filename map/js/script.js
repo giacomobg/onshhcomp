@@ -132,8 +132,8 @@ if(Modernizr.webgl) {
 				"type": "fill",
 				"source": {
 					"type": "vector",
-					"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
-					// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
+					// "tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
+					"tiles": ["https://cdn.ons.gov.uk/maptiles/t32/lsoatiles/{z}/{x}/{y}.pbf"],
 					"maxzoom": 13
 				},
 				// "minzoom": 4,
@@ -174,8 +174,8 @@ if(Modernizr.webgl) {
 					'type': 'fill',
 					"source": {
 						"type": "vector",
-						"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
-						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/tiles/{z}/{x}/{y}.pbf"],
+						// "tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
+						"tiles": ["https://cdn.ons.gov.uk/maptiles/t32/lsoatiles/{z}/{x}/{y}.pbf"],
 						"maxzoom": 13
 					},
 					// "maxzoom"
@@ -210,9 +210,9 @@ if(Modernizr.webgl) {
 					"type": "line",
 					"source": {
 						"type": "vector",
-						"tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
+						// "tiles": ["http://localhost:8000/lsoatiles/{z}/{x}/{y}.pbf"],
+						"tiles": ["https://cdn.ons.gov.uk/maptiles/t32/lsoatiles/{z}/{x}/{y}.pbf"],
 						"maxzoom": 13
-						// "tiles": ["https://cdn.ons.gov.uk/maptiles/t26/boundaries/{z}/{x}/{y}.pbf"],
 					},
 					// "minzoom": 8,
 					// "maxzoom": 20,
@@ -685,7 +685,7 @@ if(Modernizr.webgl) {
 						"id":'vectorsource',
 						"type": "vector",
 						//"tiles": ["http://localhost:8000/tiles/{z}/{x}/{y}.pbf"],
-						"tiles": ["https://cdn.ons.gov.uk/maptiles/t18/tiles/{z}/{x}/{y}.pbf"],
+						"tiles": ["https://cdn.ons.gov.uk/maptiles/t32/lsoatiles/{z}/{x}/{y}.pbf"],
 						"minzoom": 4,
 						"maxzoom": 13
 					},
