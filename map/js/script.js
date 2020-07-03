@@ -668,7 +668,7 @@ if(Modernizr.webgl) {
 
 				console.log(features)
 				if(typeof features !== 'undefined' ) {
-					setAxisVal(features[0].properties.LSOA11CD, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+					setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 
  			 }
 
@@ -826,7 +826,7 @@ if(Modernizr.webgl) {
 		 		map.setFilter("lsoa-outlines-hover", ["==", "LSOA11CD", features[0].properties.LSOA11CD]);
 				//var features = map.queryRenderedFeatures(point);
 				disableMouseEvents();
-				setAxisVal(features[0].properties.LSOA11CD, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+				setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				//updatePercent(features[0]);
 		 		clearInterval(tilechecker);
 		 	}
@@ -841,7 +841,7 @@ if(Modernizr.webgl) {
 		function selectlist(datacsv) {
 
 			var areacodes =  datacsv.map(function(d) { return d.LSOA11CD; });
-			var areanames =  datacsv.map(function(d) { return d.LSOA11CD; });
+			var areanames =  datacsv.map(function(d) { return d.LSOA11NM; });
 			var menuarea = d3.zip(areanames,areacodes).sort(function(a, b){ return d3.ascending(a[0], b[0]); });
 
 			// Build option menu for occupations
