@@ -812,26 +812,41 @@ if(Modernizr.webgl) {
 
 	function successpc(lat,lng) {
 
-		map.jumpTo({center:[lng,lat], zoom:12})
-		point = map.project([lng,lat]);
-
-
-		setTimeout(function(){
-
-		var tilechecker = setInterval(function(){
-			 features=null
-		 	features = map.queryRenderedFeatures(point,{layers: ['lsoa-outlines']});
+		map.flyTo({center:[lng,lat], zoom:13})
+		map.once('moveend', function() {
+			features=null
+			point = map.project([lng,lat]);
+		 	features = map.queryRenderedFeatures(point,{layers: ["oa-hover"]});
 		 	if(features.length != 0){
 		 		 //onrender(),
-		 		map.setFilter("lsoa-outlines-hover", ["==", "LSOA11CD", features[0].properties.LSOA11CD]);
+		 		map.setFilter("oa-outlines-hover", ["==", "OA11CD", features[0].properties.OA11CD]);
 				//var features = map.queryRenderedFeatures(point);
 				disableMouseEvents();
-				setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+				setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				//updatePercent(features[0]);
-		 		clearInterval(tilechecker);
-		 	}
-		 },500)
-		},500);
+			}
+		})
+		//
+		// map.jumpTo({center:[lng,lat], zoom:12})
+		// point = map.project([lng,lat]);
+		//
+		//
+		// setTimeout(function(){
+		//
+		// var tilechecker = setInterval(function(){
+		// 	 features=null
+		//  	features = map.queryRenderedFeatures(point,{layers: ['lsoa-outlines']});
+		//  	if(features.length != 0){
+		//  		 //onrender(),
+		//  		map.setFilter("lsoa-outlines-hover", ["==", "LSOA11CD", features[0].properties.LSOA11CD]);
+		// 		//var features = map.queryRenderedFeatures(point);
+		// 		disableMouseEvents();
+		// 		setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+		// 		//updatePercent(features[0]);
+		//  		clearInterval(tilechecker);
+		//  	}
+		//  },500)
+		// },500);
 
 
 
