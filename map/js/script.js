@@ -816,7 +816,7 @@ if(Modernizr.webgl) {
 		map.once('moveend', function() {
 			features=null
 			point = map.project([lng,lat]);
-		 	features = map.queryRenderedFeatures(point,{layers: ["oa-hover"]});
+		 	features = map.queryRenderedFeatures(point,{layers: ["lsoa-outlines"]});
 		 	if(features.length != 0){
 		 		 //onrender(),
 		 		map.setFilter("oa-outlines-hover", ["==", "LSOA11CD", features[0].properties.LSOA11CD]);
