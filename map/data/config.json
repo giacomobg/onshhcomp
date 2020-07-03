@@ -1,5 +1,5 @@
 {"ons":{
-"maptitle": "Small area population estimates - LSOA",
+"maptitle": "Households where people aged 70 and over live with people aged 60 and under",
 "varcolour": ["#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"],
 "legendvars":["% Aged 70+","% Aged 85+"],
 "varunit": "&nbsp;&nbsp;<b>&#x25B2;</b> <br>10% least deprived areas",
