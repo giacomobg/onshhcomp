@@ -164,7 +164,7 @@ if(Modernizr.webgl) {
 							"property": "nummultigen",
 							"stops": [
 								[0, '#60868f'],
-								[41, '#c547df']
+								[41, '#ff00ff']
 							]
 						},
 						"circle-opacity": 0.9
