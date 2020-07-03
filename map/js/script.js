@@ -330,7 +330,7 @@ if(Modernizr.webgl) {
 
 				 	if(features.length != 0){
 
-						setAxisVal(features[0].properties.LSOA11CD, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+						setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 						//updatePercent(e.features[0]);
 					}
 					//setAxisVal(e.features[0].properties.LSOA11CD, e.features[0].properties["houseprice"]);
@@ -377,7 +377,7 @@ if(Modernizr.webgl) {
 				if(newLSOA11CD != oldLSOA11CD) {
 					map.setFilter("lsoa-outlines-hover", ["==", "LSOA11CD", e.features[0].properties.LSOA11CD]);
 					//var features = map.queryRenderedFeatures(e.point,{layers: ['lsoa-outlines']});
-					setAxisVal(features[0].properties.LSOA11CD, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+					setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				}
 
 		 		// if(newLSOA11CD != oldLSOA11CD) {
