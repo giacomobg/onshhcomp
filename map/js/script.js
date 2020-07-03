@@ -819,10 +819,10 @@ if(Modernizr.webgl) {
 		 	features = map.queryRenderedFeatures(point,{layers: ["oa-hover"]});
 		 	if(features.length != 0){
 		 		 //onrender(),
-		 		map.setFilter("oa-outlines-hover", ["==", "OA11CD", features[0].properties.OA11CD]);
+		 		map.setFilter("oa-outlines-hover", ["==", "LSOA11CD", features[0].properties.LSOA11CD]);
 				//var features = map.queryRenderedFeatures(point);
 				disableMouseEvents();
-				setAxisVal(features[0].properties.OA11CD, features[0].properties.OA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
+				setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
 				//updatePercent(features[0]);
 			}
 		})
