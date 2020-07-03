@@ -819,7 +819,7 @@ if(Modernizr.webgl) {
 		 	features = map.queryRenderedFeatures(point,{layers: ["lsoa-outlines"]});
 		 	if(features.length != 0){
 		 		 //onrender(),
-		 		map.setFilter("oa-outlines-hover", ["==", "LSOA11CD", features[0].properties.LSOA11CD]);
+		 		map.setFilter("lsoa-outlines-hover", ["==", "LSOA11CD", features[0].properties.LSOA11CD]);
 				//var features = map.queryRenderedFeatures(point);
 				disableMouseEvents();
 				setAxisVal(features[0].properties.LSOA11NM, features[0].properties.LSOA11CD,features[0].properties[hoverlayername],features[0].properties[secondvar]);
